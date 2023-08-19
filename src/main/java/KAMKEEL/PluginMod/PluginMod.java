@@ -22,6 +22,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -85,6 +86,9 @@ public class PluginMod {
     public static CreativeTabs cardsTab = new CreativeTabs(LocalizationHelper.MOD_PREFIX + "playingCardTab") {
         @Override
         public Item getTabIconItem() {
+            if (ModItems.CardIcon == null) {
+                return new ItemStack(Blocks.enchanting_table).getItem();
+            }
             return new ItemStack(ModItems.CardIcon).getItem();
         }
     };
@@ -92,6 +96,10 @@ public class PluginMod {
     public static CreativeTabs miscTab = new CreativeTabs(LocalizationHelper.MOD_PREFIX + "misc") {
         @Override
         public Item getTabIconItem() {
+            if (ModItems.TreasureMap == null) {
+                return new ItemStack(Items.filled_map).getItem(); // Let's use a default map here instead of an enchantment table, just to spice things up
+            }
+
             return new ItemStack(ModItems.TreasureMap).getItem();
         }
     };
@@ -99,6 +107,10 @@ public class PluginMod {
     public static CreativeTabs weaponTab = new CreativeTabs(LocalizationHelper.MOD_PREFIX + "weapons") {
         @Override
         public Item getTabIconItem() {
+            if (ModItems.PaperBomb == null) {
+                return new ItemStack(Items.iron_sword).getItem(); // Let's use an iron sword to signify weapons instead of an enchantment table, just to spice things up
+            }
+
             return new ItemStack(ModItems.PaperBomb).getItem();
         }
     };
